@@ -8,6 +8,7 @@ public class monsterSpawnController : MonoBehaviour
     public GameObject[] monsters;
     int randomSpawnPoint, randomMonster;
     public static bool spawnAllowed;
+    private int monsterCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +20,12 @@ public class monsterSpawnController : MonoBehaviour
 
     void SpawnMonster()
     {
-        if (spawnAllowed)
+        if (spawnAllowed && monsterCount<15)
         {
             randomSpawnPoint = Random.Range(0, spawnPoints.Length);
             randomMonster = Random.Range(0, monsters.Length);
             Instantiate(monsters[randomMonster], spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            monsterCount++;
         }
     }
 }
